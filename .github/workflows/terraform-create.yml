@@ -25,15 +25,19 @@ jobs:
 
       - name: Initialize Terraform
         run: |
-          cd controltower
+          cd controltower  # Change directory to controltower
           terraform init
 
       - name: Terraform Plan
-        run: terraform plan
+        run: |
+          cd controltower  # Change directory to controltower
+          terraform plan
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'  # Only run apply if on the specific branch
-        run: terraform apply -auto-approve
+        run: |
+          cd controltower  # Change directory to controltower
+          terraform apply -auto-approve
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
