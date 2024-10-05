@@ -23,8 +23,10 @@ jobs:
         with:
           terraform_version: 1.4.0  # Adjust version as needed
 
-      - name: Terraform Init
-        run: terraform init
+      - name: Initialize Terraform
+        run: |
+          cd controltower
+          terraform init
 
       - name: Terraform Plan
         run: terraform plan
